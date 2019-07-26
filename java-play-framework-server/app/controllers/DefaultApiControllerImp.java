@@ -5,6 +5,8 @@ import apimodels.TransformerInfo;
 import apimodels.TransformerQuery;
 
 import play.mvc.Http;
+import producer.Producer;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +23,7 @@ public class DefaultApiControllerImp implements DefaultApiControllerImpInterface
 
     @Override
     public TransformerInfo transformerInfoGet() throws Exception {
-        //Do your magic!!!
-        return new TransformerInfo();
+        return Producer.transformerInfo();
     }
 
 }
