@@ -32,3 +32,6 @@ java-play-framework-server/.cache-main
 java-play-framework-server/target/
 java-play-framework-server/project/target/
 java-play-framework-server/project/project/target/
+
+#MSigDB files
+msigdb

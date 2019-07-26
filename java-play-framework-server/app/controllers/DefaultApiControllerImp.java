@@ -17,8 +17,7 @@ import javax.validation.constraints.*;
 public class DefaultApiControllerImp implements DefaultApiControllerImpInterface {
     @Override
     public List<GeneInfo> transformPost(TransformerQuery query) throws Exception {
-        //Do your magic!!!
-        return new ArrayList<GeneInfo>();
+    	return Producer.produceGeneSet(query);
     }
 
     @Override
