@@ -6,6 +6,6 @@ public class Module extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(DefaultApiControllerImpInterface.class).to(DefaultApiControllerImp.class);
+        bind(TransformerApiControllerImpInterface.class).to(TransformerApiControllerImp.class);
     }
 }
