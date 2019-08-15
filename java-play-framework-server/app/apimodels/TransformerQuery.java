@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * TransformerQuery
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-07-25T22:54:00.554Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-08-13T23:03:57.742Z")
 
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class TransformerQuery   {
@@ -20,7 +20,7 @@ public class TransformerQuery   {
   private List<GeneInfo> genes = null;
 
   @JsonProperty("controls")
-  private List<Property> controls = null;
+  private List<Property> controls = new ArrayList<>();
 
   public TransformerQuery genes(List<GeneInfo> genes) {
     this.genes = genes;
@@ -36,7 +36,7 @@ public class TransformerQuery   {
   }
 
    /**
-   * Get genes
+   * List of genes that will be transformed. Required for expanders and filters; should be omitted for producers.
    * @return genes
   **/
   @Valid
@@ -54,18 +54,16 @@ public class TransformerQuery   {
   }
 
   public TransformerQuery addControlsItem(Property controlsItem) {
-    if (controls == null) {
-      controls = new ArrayList<>();
-    }
     controls.add(controlsItem);
     return this;
   }
 
    /**
-   * Get controls
+   * Values that control the behavior of the transformer. Names of the controls must match the names specified in the transformer's definition and values must match types (and possibly  allowed_values) specified in the transformer's definition.
    * @return controls
   **/
-  @Valid
+  @NotNull
+@Valid
   public List<Property> getControls() {
     return controls;
   }

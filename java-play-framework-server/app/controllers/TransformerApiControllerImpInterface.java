@@ -12,7 +12,7 @@ import java.util.HashMap;
 import javax.validation.constraints.*;
 
 @SuppressWarnings("RedundantThrows")
-public interface DefaultApiControllerImpInterface {
+public interface TransformerApiControllerImpInterface {
     List<GeneInfo> transformPost(TransformerQuery query) throws Exception;
 
     TransformerInfo transformerInfoGet() throws Exception;

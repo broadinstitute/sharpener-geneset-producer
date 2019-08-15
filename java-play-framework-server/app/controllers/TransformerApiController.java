@@ -22,16 +22,16 @@ import play.Configuration;
 
 import swagger.SwaggerUtils.ApiAction;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-07-25T22:54:00.554Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-08-13T23:03:57.742Z")
 
-public class DefaultApiController extends Controller {
+public class TransformerApiController extends Controller {
 
-    private final DefaultApiControllerImpInterface imp;
+    private final TransformerApiControllerImpInterface imp;
     private final ObjectMapper mapper;
     private final Configuration configuration;
 
     @Inject
-    private DefaultApiController(Configuration configuration, DefaultApiControllerImpInterface imp) {
+    private TransformerApiController(Configuration configuration, TransformerApiControllerImpInterface imp) {
         this.imp = imp;
         mapper = new ObjectMapper();
         this.configuration = configuration;
