@@ -22,7 +22,7 @@ import play.Configuration;
 
 import swagger.SwaggerUtils.ApiAction;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-08-13T23:03:57.742Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-08-26T20:47:04.306Z")
 
 public class TransformerApiController extends Controller {
 
