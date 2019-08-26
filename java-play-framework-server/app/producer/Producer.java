@@ -49,7 +49,7 @@ public class Producer {
 			String[] row = line.split("\t");
 			ArrayList<GeneInfo> genes = new ArrayList<GeneInfo>();
 			for (int i = 2; i < row.length; i++) {
-				String geneId = "NCBIgene:" + row[i];
+				String geneId = "NCBIGene:" + row[i];
 				GeneInfo gene = new GeneInfo().geneId(geneId);
 				gene.addAttributesItem(new Attribute().name("entrez_gene_id").value(row[i]).source("MSigDB"));
 				gene.addAttributesItem(new Attribute().name("gene set").value(row[0]).source("MSigDB"));
