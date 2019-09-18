@@ -1,0 +1,16 @@
+{
+  "name": "MSigDB gene-set producer",
+  "function": "producer",
+  "description": "Gene-list producer based on MSigDB gene sets (http://software.broadinstitute.org/gsea/msigdb/index.jsp).",
+  "parameters": [
+    {
+      "default": "REACTOME_GLYCOLYSIS",
+      "name": "gene_set_name",
+      "type": "string",
+      "allowed_values": null,
+      "suggested_values": null,
+      "lookup_url": null
+    }
+  ],
+  "required_attributes": []
+}
