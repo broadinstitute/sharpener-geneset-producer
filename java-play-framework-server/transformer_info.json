@@ -1,11 +1,13 @@
 {
-  "name": "MSigDB gene-set producer",
+  "name": "MSigDB gene-set content",
+  "url": "https://sharpener.ncats.io/msigdb_producer",
+  "status": "online",
   "function": "producer",
-  "description": "Gene-list producer based on MSigDB gene sets (http://software.broadinstitute.org/gsea/msigdb/index.jsp).",
+  "description": "Gene-list producer based on named gene sets from Molecular Signatures Database (http://software.broadinstitute.org/gsea/msigdb/index.jsp).",
   "parameters": [
     {
       "default": "REACTOME_GLYCOLYSIS",
-      "name": "gene_set_name",
+      "name": "gene set name",
       "type": "string",
       "allowed_values": null,
       "suggested_values": null,
