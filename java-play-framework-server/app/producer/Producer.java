@@ -3,9 +3,15 @@ package producer;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import apimodels.Attribute;
 import apimodels.GeneInfo;
@@ -21,7 +27,14 @@ public class Producer {
 	
 	private static final Parameter.TypeEnum STRING = Parameter.TypeEnum.STRING;
 	
-	private static final String GENE_SET_NAME = "gene_set_name";
+	private static String geneSetName = "gene_set_name";
+	
+	private static ObjectMapper mapper = new ObjectMapper();
+	
+	static {
+		mapper.setSerializationInclusion(Include.NON_NULL);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	}
 
 	private static HashMap<String,ArrayList<GeneInfo>> geneSets = new HashMap<String,ArrayList<GeneInfo>>();
 
@@ -35,11 +48,16 @@ public class Producer {
 
 
 	public static TransformerInfo transformerInfo() {
-		TransformerInfo transformerInfo = new TransformerInfo().name("MSigDB gene-set producer").function(PRODUCER);
-		transformerInfo.description("Gene-list producer based on MSigDB gene sets (http://software.broadinstitute.org/gsea/msigdb/index.jsp).");
-		transformerInfo.addParametersItem(new Parameter().name(GENE_SET_NAME).type(STRING)._default("REACTOME_GLYCOLYSIS"));
-		transformerInfo.setRequiredAttributes(new ArrayList<String>());
-		return transformerInfo;
+		 
+		try {
+			String json = new String(Files.readAllBytes(Paths.get("transformer_info.json")));
+			TransformerInfo info = mapper.readValue(json, TransformerInfo.class);
+			geneSetName = info.getParameters().get(0).getName();
+			return info;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 
@@ -51,7 +69,6 @@ public class Producer {
 			for (int i = 2; i < row.length; i++) {
 				String geneId = "NCBIGene:" + row[i];
 				GeneInfo gene = new GeneInfo().geneId(geneId);
-				gene.addAttributesItem(new Attribute().name("entrez_gene_id").value(row[i]).source("MSigDB"));
 				gene.addAttributesItem(new Attribute().name("gene set").value(row[0]).source("MSigDB"));
 				gene.setIdentifiers(new GeneInfoIdentifiers().entrez(geneId));
 				genes.add(gene);
@@ -77,7 +94,7 @@ public class Producer {
 
 	private static String geneSetName(final TransformerQuery query) {
 		for (Property property : query.getControls()) {
-			if (GENE_SET_NAME.equals(property.getName())) {
+			if (geneSetName.equals(property.getName())) {
 				return property.getValue();
 			}
 		}

@@ -23,6 +23,7 @@
 hs_err_pid*
 
 #eclipse-related files
+java-play-framework-server/bin/
 java-play-framework-server/.settings
 java-play-framework-server/.project
 java-play-framework-server/.classpath
